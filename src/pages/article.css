@@ -1,0 +1,188 @@
+/* ===============================================================
+   Artikelpagina
+   =============================================================== */
+.article__head {
+  padding-top: clamp(32px, 5vw, 64px);
+}
+.article__head-inner {
+  max-width: 1100px;
+}
+.article__crumbs a {
+  text-decoration: none;
+  border-bottom: 2px solid var(--tone);
+}
+.article__type {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 24px;
+}
+.article__type .tag:first-child {
+  background: var(--tone);
+  color: var(--tone-fg);
+  border-color: var(--tone);
+}
+.article__title {
+  margin-top: 18px;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(2.4rem, 6vw, 5.4rem);
+  line-height: 1;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+.article__intro {
+  margin-top: 24px;
+  max-width: 48ch;
+  font-size: clamp(1.2rem, 1.05rem + 0.7vw, 1.6rem);
+  line-height: 1.4;
+  font-style: italic;
+}
+.article__byline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 22px;
+  margin-top: 28px;
+  padding-top: 14px;
+  border-top: var(--rule);
+  color: var(--muted);
+}
+.article__hero {
+  margin-top: clamp(28px, 4vw, 48px);
+}
+.article__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 680px) minmax(0, 1fr);
+  gap: 0 clamp(16px, 3vw, 48px);
+  padding-block: clamp(40px, 6vw, 80px);
+}
+.article__body {
+  grid-column: 2;
+}
+.article__body > p:first-child::first-letter {
+  float: left;
+  font-family: var(--font-display);
+  font-size: 4.6em;
+  line-height: 0.82;
+  padding: 0.04em 0.1em 0 0;
+  color: var(--tone);
+}
+.article__box {
+  grid-column: 3;
+  grid-row: 1;
+  align-self: start;
+  position: sticky;
+  top: calc(var(--nav-h) + 24px);
+  border: var(--rule);
+  background: var(--white);
+  padding: 18px 20px;
+  box-shadow: 6px 6px 0 var(--tone);
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+}
+.article__box ul {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+.rating {
+  margin-top: 8px;
+  font-size: 1.7rem;
+  letter-spacing: 0.08em;
+  color: rgba(20, 18, 16, 0.2);
+}
+.rating .is-on {
+  color: var(--red);
+}
+
+/* interview: vragen vet en in de rubriekkleur */
+.article--interview .article__body .qa-q {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 0.95em;
+  color: var(--red-deep);
+}
+/* lijstje: tussenkoppen worden grote nummers */
+.article--listicle .article__body {
+  counter-reset: item;
+}
+.article--listicle .article__body h2 {
+  counter-increment: item;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 16px;
+  align-items: baseline;
+}
+.article--listicle .article__body h2::before {
+  content: counter(item, decimal-leading-zero);
+  font-size: 2.2em;
+  line-height: 0.8;
+  color: var(--tone);
+  -webkit-text-stroke: 2px var(--ink);
+}
+/* fotoreportage: beelden breder dan de tekstkolom */
+.article--fotoreportage .article__body .md-figure {
+  margin-inline: calc(-1 * min(18vw, 220px));
+}
+.article--fotoreportage .article__body .md-figure:nth-of-type(even) {
+  margin-left: calc(-1 * min(6vw, 60px));
+  margin-right: calc(-1 * min(24vw, 300px));
+}
+@media (max-width: 1000px) {
+  .article__layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .article__body,
+  .article__box {
+    grid-column: 1;
+  }
+  .article__box {
+    position: static;
+    grid-row: auto;
+    margin-bottom: 32px;
+    max-width: 680px;
+  }
+  .article__body {
+    max-width: 680px;
+  }
+  .article--fotoreportage .article__body .md-figure,
+  .article--fotoreportage .article__body .md-figure:nth-of-type(even) {
+    margin-inline: calc(-1 * var(--gutter));
+  }
+}
+
+.article__plug {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-block: 28px;
+  border-block: var(--rule);
+  margin-bottom: clamp(48px, 7vw, 96px);
+}
+.article__plug-text {
+  font-size: 1.25rem;
+  max-width: 40ch;
+}
+
+.related {
+  background: var(--paper-deep);
+  padding-block: clamp(48px, 7vw, 96px);
+}
+.related__title {
+  font-size: clamp(3rem, 8vw, 6rem);
+  margin-bottom: 32px;
+}
+.related__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(20px, 3vw, 40px);
+}
+@media (max-width: 800px) {
+  .related__grid {
+    grid-template-columns: 1fr;
+  }
+}
